@@ -11,6 +11,9 @@ import {
 
 window.__motionReady = true;
 
+/** Target of every "Angebot Anfordern" / "Fotos Hochladen" button. Set the final URL here. */
+const CTA_URL = "#";
+
 const root = document.documentElement;
 const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const EASE = [0.22, 1, 0.36, 1];
@@ -286,6 +289,7 @@ function initToggle() {
       toggle.dataset.active = String(i);
       tabs.forEach((t, j) => t.setAttribute("aria-selected", String(i === j)));
       setChipsVisible(i === 0);
+      document.dispatchEvent(new CustomEvent("carousel:change"));
       panes.forEach((pane, j) => {
         if (j === i) {
           pane.hidden = false;
@@ -330,6 +334,7 @@ function initTrackCarousels() {
       dots.forEach((d, j) => d.setAttribute("aria-current", String(j === index)));
       slides.forEach((s, j) => s.setAttribute("aria-hidden", String(j !== index)));
       animate(track, { x: `${-index * 100}%` }, REDUCED ? { duration: 0 } : SPRING);
+      document.dispatchEvent(new CustomEvent("carousel:change"));
     }
 
     prev.addEventListener("click", () => go(index - 1));
@@ -401,6 +406,7 @@ function initPeekCarousel() {
     const nextIndex = (i + n) % n;
     if (nextIndex === index && animated) return;
     index = nextIndex;
+    document.dispatchEvent(new CustomEvent("carousel:change"));
     layout(animated);
     const card = cards[index];
     if (!REDUCED && animated) {
@@ -476,132 +482,59 @@ function initFaq() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Lead modal                                                          */
+/* CTA links                                                           */
 /* ------------------------------------------------------------------ */
-function initModal() {
-  const modal = $("#angebot");
-  if (!modal) return;
-  const card = $(".modal__card", modal);
-  const form = $("#lead-form", modal);
-  const success = $("#lead-success", modal);
-  let lastFocus = null;
-
-  const openModal = (trigger) => {
-    lastFocus = trigger || document.activeElement;
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("is-locked");
-    if (!REDUCED) {
-      animate($(".modal__backdrop", modal), { opacity: [0, 1] }, { duration: 0.3 });
-      animate(card, { opacity: [0, 1], y: [28, 0], scale: [0.96, 1] }, { type: "spring", stiffness: 260, damping: 26 });
+function initCtaLinks() {
+  $$("[data-cta]").forEach((a) => {
+    a.href = CTA_URL;
+    if (/^https?:/.test(CTA_URL)) {
+      a.target = "_blank";
+      a.rel = "noopener";
     }
-    const first = $("input, select, textarea, button", form) || $(".modal__close", modal);
-    window.setTimeout(() => first && first.focus(), 60);
-  };
-
-  const closeModal = async () => {
-    if (!REDUCED) {
-      await animate(card, { opacity: [1, 0], y: [0, 16], scale: [1, 0.97] }, { duration: 0.22, ease: "easeIn" });
-    }
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("is-locked");
-    if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
-  };
-
-  $$("[data-open-modal]").forEach((btn) => btn.addEventListener("click", () => openModal(btn)));
-  $$("[data-close-modal]", modal).forEach((el) => el.addEventListener("click", closeModal));
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
-  });
-
-  // Focus trap
-  modal.addEventListener("keydown", (e) => {
-    if (e.key !== "Tab") return;
-    const focusables = $$("button, [href], input, select, textarea", modal).filter((el) => !el.disabled && el.offsetParent !== null);
-    if (!focusables.length) return;
-    const first = focusables[0];
-    const last = focusables[focusables.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  });
-
-  // Upload label feedback
-  const fileInput = $('input[type="file"]', form);
-  const uploadLabel = $("[data-upload-label]", form);
-  if (fileInput && uploadLabel) {
-    fileInput.addEventListener("change", () => {
-      const count = fileInput.files.length;
-      uploadLabel.textContent = count ? `${count} ${count === 1 ? "Foto" : "Fotos"} ausgewählt` : "Fotos Deiner Nase hochladen (bis zu 4)";
-    });
-  }
-
-  // Submit (front-end only — wire to your CRM/endpoint)
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-    const submit = $('button[type="submit"]', form);
-    submit.disabled = true;
-    submit.textContent = "Wird gesendet …";
-    await new Promise((r) => window.setTimeout(r, 700));
-    form.hidden = true;
-    success.classList.add("is-visible");
-    if (!REDUCED) animate(success, { opacity: [0, 1], y: [12, 0] }, { duration: 0.5, ease: EASE });
-    $(".modal__close", modal).focus();
   });
 }
 
 /* ------------------------------------------------------------------ */
-/* Video lightbox                                                      */
+/* Inline Vimeo players (patient voices, result videos)                */
 /* ------------------------------------------------------------------ */
-function initLightbox() {
-  const box = $("#lightbox");
-  if (!box) return;
-  const body = $(".lightbox__body", box);
-  const fallback = $("[data-lightbox-fallback]", box);
-  let video = null;
-  let lastFocus = null;
+function initVimeo() {
+  const players = new Set();
 
-  const openBox = (src, trigger) => {
-    lastFocus = trigger;
-    box.classList.add("is-open");
-    box.setAttribute("aria-hidden", "false");
-    document.body.classList.add("is-locked");
-    if (src) {
-      fallback.hidden = true;
-      video = document.createElement("video");
-      video.src = src;
-      video.controls = true;
-      video.playsInline = true;
-      video.autoplay = true;
-      body.appendChild(video);
-    } else {
-      fallback.hidden = false;
+  const stopAll = () => {
+    players.forEach((card) => {
+      const frame = $("iframe", card);
+      if (frame) frame.remove();
+      card.classList.remove("is-playing");
+    });
+    players.clear();
+  };
+
+  $$(".play[data-vimeo]").forEach((btn) => {
+    const id = btn.dataset.vimeo;
+    if (!id) {
+      // No video yet: keep the thumbnail, hide the dead control.
+      btn.hidden = true;
+      return;
     }
-    if (!REDUCED) animate(body, { opacity: [0, 1], scale: [0.94, 1] }, { type: "spring", stiffness: 240, damping: 26 });
-    $("[data-close-lightbox]", box).focus();
-  };
-
-  const closeBox = () => {
-    box.classList.remove("is-open");
-    box.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("is-locked");
-    if (video) { video.pause(); video.remove(); video = null; }
-    if (lastFocus) lastFocus.focus();
-  };
-
-  $$(".play").forEach((btn) => btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    openBox(btn.dataset.video || "", btn);
-  }));
-  $("[data-close-lightbox]", box).addEventListener("click", closeBox);
-  box.addEventListener("click", (e) => { if (e.target === box) closeBox(); });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && box.classList.contains("is-open")) closeBox();
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const card = btn.parentElement;
+      stopAll();
+      const frame = document.createElement("iframe");
+      frame.src = `https://player.vimeo.com/video/${id}?autoplay=1&playsinline=1&dnt=1&title=0&byline=0&portrait=0`;
+      frame.allow = "autoplay; fullscreen; picture-in-picture";
+      frame.allowFullscreen = true;
+      frame.title = btn.getAttribute("aria-label") || "Video";
+      frame.className = "vimeo-frame";
+      card.appendChild(frame);
+      card.classList.add("is-playing");
+      players.add(card);
+      if (!REDUCED) animate(frame, { opacity: [0, 1] }, { duration: 0.4 });
+    });
   });
+
+  // Leaving a slide stops its video.
+  document.addEventListener("carousel:change", stopAll);
 }
 
 /* ------------------------------------------------------------------ */
@@ -612,7 +545,7 @@ function initStickyCta() {
   const hero = $(".hero");
   const footer = $(".footer");
   if (!bar || !hero) return;
-  const btn = $("button", bar);
+  const btn = $("a, button", bar);
   let heroVisible = true;
   let footerVisible = false;
 
@@ -698,8 +631,8 @@ function init() {
   initTrackCarousels();
   initPeekCarousel();
   initFaq();
-  initModal();
-  initLightbox();
+  initCtaLinks();
+  initVimeo();
   initStickyCta();
 }
 
