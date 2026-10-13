@@ -656,7 +656,23 @@ function attachSwipe(el, onLeft, onRight) {
     const dy = e.clientY - startY;
     if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) (dx < 0 ? onLeft : onRight)();
   });
-  el.addEventListener("pointercancel", () => { active = false; });
+  el.addEventListener("pointercancel", (e) => {
+    // Some browsers cancel touch pointers when scrolling starts; still honour a clear horizontal swipe.
+    if (!active) return;
+    active = false;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) (dx < 0 ? onLeft : onRight)();
+  });
+  el.addEventListener("touchstart", (e) => { if (e.touches[0]) { startX = e.touches[0].clientX; startY = e.touches[0].clientY; active = true; } }, { passive: true });
+  el.addEventListener("touchend", (e) => {
+    if (!active || !e.changedTouches[0]) return;
+    active = false;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) (dx < 0 ? onLeft : onRight)();
+  }, { passive: true });
 }
 
 function debounce(fn, wait) {

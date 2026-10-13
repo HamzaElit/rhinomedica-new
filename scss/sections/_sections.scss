@@ -733,6 +733,7 @@
 
   &__stage {
     position: relative;
+    touch-action: pan-y;
     height: 533px;
     margin-top: 40px;
     @include md { margin-top: 56px; height: 600px; }
@@ -839,6 +840,8 @@
     width: 100%;
     overflow: hidden;
     border-radius: var(--radius-md);
+    touch-action: pan-y; // horizontal swipes reach the carousel, vertical scroll stays native
+    cursor: grab;
     @include md { border-radius: var(--radius-sm); }
   }
 

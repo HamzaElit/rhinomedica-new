@@ -1684,6 +1684,7 @@ html.js.motion-ok .words .w__i {
 }
 .voices__stage {
   position: relative;
+  touch-action: pan-y;
   height: 533px;
   margin-top: 40px;
 }
@@ -1824,6 +1825,8 @@ html.js.motion-ok .words .w__i {
   width: 100%;
   overflow: hidden;
   border-radius: var(--radius-md);
+  touch-action: pan-y;
+  cursor: grab;
 }
 @media (min-width: 768px) {
   .proof__viewport {
