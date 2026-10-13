@@ -127,15 +127,28 @@
 // BEFORE / AFTER (Figma 127:49)  +  ERGEBNISSE (179:720)
 // =====================================================================
 .ba {
+  // Mobile (5:140): stacked, left aligned, CTA under the slider
+  // Tablet (176:414 "Zentriert"): everything centred, 640px slider
+  // Desktop (127:49): text + CTA left, slider right
   &__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 40px;
-    align-items: center;
+    justify-items: start;
+    @include md {
+      gap: 48px;
+      justify-items: center;
+    }
     @include lg {
       grid-template-columns: minmax(0, 663px) minmax(0, 512px);
+      grid-template-areas:
+        "text panes"
+        "cta panes";
       justify-content: space-between;
-      gap: 40px;
+      justify-items: start;
+      align-items: center;
+      column-gap: 40px;
+      row-gap: 40px;
     }
   }
 
@@ -144,21 +157,53 @@
     flex-direction: column;
     gap: 32px;
     min-width: 0;
-    @include lg { gap: 40px; }
+    width: 100%;
+    @include md {
+      align-items: center;
+      text-align: center;
+      max-width: 640px;
+      gap: 40px;
+    }
+    @include lg {
+      grid-area: text;
+      align-self: end;
+      align-items: flex-start;
+      text-align: left;
+      max-width: none;
+    }
   }
 
   &__controls {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
+    @include md { align-items: center; }
+    @include lg { align-items: flex-start; }
   }
 
   &__panes {
     position: relative;
     width: 100%;
     max-width: 520px;
-    margin-inline: auto;
-    @include lg { margin-inline: 0; }
+    @include md { max-width: 640px; }
+    @include lg {
+      grid-area: panes;
+      align-self: center;
+      justify-self: end;
+      max-width: 512px;
+    }
+  }
+
+  &__cta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    @include lg {
+      grid-area: cta;
+      align-self: start;
+      justify-content: flex-start;
+    }
   }
 
   &__pane {
@@ -185,6 +230,12 @@
       object-fit: cover;
     }
   }
+
+  // Tablet: chips sit in one centred row at Figma's 16.5px
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .chips { justify-content: center; }
+    .chip { font-size: 16.5px; padding: 5.5px 14.7px; }
+  }
 }
 
 // Compare slider
@@ -199,7 +250,8 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: pan-y;
-  @include lg { aspect-ratio: 512 / 536; }
+  @include md { aspect-ratio: 640 / 670; border-radius: 20px; }
+  @include lg { aspect-ratio: 512 / 536; border-radius: var(--radius-md); }
 
   &__img {
     position: absolute;
@@ -741,14 +793,21 @@
 // SOCIAL PROOF – Vorher/Nachher Galerie (Figma 127:227)
 // =====================================================================
 .proof {
+  // Mobile (53:524): title, copy, stacked Vorher/Nachher slides with dots, CTA last
+  // Desktop (127:227): text + CTA left, side-by-side gallery right
   &__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 40px;
+    gap: 24px;
     align-items: center;
+    @include md { gap: 40px; }
     @include lg {
       grid-template-columns: minmax(0, 500px) minmax(0, 652px);
-      gap: 48px;
+      grid-template-areas:
+        "text gallery"
+        "cta gallery";
+      column-gap: 48px;
+      row-gap: 32px;
     }
   }
 
@@ -756,7 +815,15 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+    min-width: 0;
     @include md { gap: 32px; }
+    @include lg { grid-area: text; align-self: end; }
+  }
+
+  &__cta {
+    display: flex;
+    justify-content: center;
+    @include lg { grid-area: cta; align-self: start; justify-content: flex-start; }
   }
 
   &__gallery {
@@ -764,12 +831,15 @@
     flex-direction: column;
     gap: 24px;
     align-items: center;
+    width: 100%;
+    @include lg { grid-area: gallery; align-self: center; }
   }
 
   &__viewport {
     width: 100%;
     overflow: hidden;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
+    @include md { border-radius: var(--radius-sm); }
   }
 
   &__track {
@@ -780,17 +850,18 @@
   &__slide {
     flex: 0 0 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    @include md { gap: 16px; }
+    grid-template-columns: 1fr;
+    gap: 16px;
+    @include md { grid-template-columns: 1fr 1fr; gap: 16px; }
   }
 
   &__shot {
     position: relative;
-    aspect-ratio: 318 / 333;
-    border-radius: var(--radius-sm);
+    aspect-ratio: 320 / 520;
+    border-radius: var(--radius-md);
     overflow: hidden;
     background: var(--grey-light);
+    @include md { aspect-ratio: 318 / 333; border-radius: var(--radius-sm); }
     img {
       width: 100%;
       height: 100%;
@@ -801,15 +872,20 @@
 
   &__tag {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 4px 16px;
+    top: 14px;
+    left: 14px;
+    padding: 6px 20px;
     border-radius: 79px;
     background: var(--cream);
     font-weight: 500;
-    font-size: 16px;
+    font-size: 18px;
     color: var(--ink);
-    @include max-md { font-size: 14px; padding: 3px 12px; }
+    @include md { top: 10px; left: 10px; padding: 4px 16px; font-size: 16px; }
+  }
+
+  // Mobile: dots only, no arrow buttons (Figma 53:524)
+  @include max-md {
+    .cnav__btn { display: none; }
   }
 }
 
@@ -921,5 +997,18 @@
       }
       @include hover { &::after { transform: scaleX(1); } }
     }
+  }
+}
+
+// =====================================================================
+// TABLET ONLY: centred CTA blocks under text columns
+// =====================================================================
+@media (min-width: 768px) and (max-width: 1199px) {
+  .sim__text,
+  .piezo__text,
+  .team__text,
+  .healing__text,
+  .proof__text {
+    .cta { align-self: center; }
   }
 }

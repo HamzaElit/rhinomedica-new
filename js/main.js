@@ -195,6 +195,51 @@ function initCompare() {
   });
 }
 
+function initChipsScroll() {
+  const row = $("#chips");
+  if (!row) return;
+  let startX = 0;
+  let startScroll = 0;
+  let dragging = false;
+  let moved = false;
+
+  const updateEdge = () => {
+    row.classList.toggle("is-at-end", row.scrollLeft + row.clientWidth >= row.scrollWidth - 2);
+  };
+  row.addEventListener("scroll", updateEdge, { passive: true });
+  window.addEventListener("resize", updateEdge);
+  updateEdge();
+
+  row.addEventListener("pointerdown", (e) => {
+    if (e.pointerType !== "mouse") return;
+    dragging = true;
+    moved = false;
+    startX = e.clientX;
+    startScroll = row.scrollLeft;
+    row.classList.add("is-dragging");
+  });
+  window.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 4) moved = true;
+    row.scrollLeft = startScroll - dx;
+  });
+  const stop = () => {
+    if (!dragging) return;
+    dragging = false;
+    row.classList.remove("is-dragging");
+  };
+  window.addEventListener("pointerup", stop);
+  window.addEventListener("pointercancel", stop);
+  // A drag must not count as a chip click.
+  row.addEventListener("click", (e) => { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
+  // Mouse wheel scrolls the row horizontally.
+  row.addEventListener("wheel", (e) => {
+    if (row.scrollWidth <= row.clientWidth) return;
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { row.scrollLeft += e.deltaY; e.preventDefault(); }
+  }, { passive: false });
+}
+
 function preload(src) {
   return new Promise((resolve) => {
     const img = new Image();
@@ -563,18 +608,32 @@ function initLightbox() {
 function initStickyCta() {
   const bar = $("#sticky-cta");
   const hero = $(".hero");
+  const footer = $(".footer");
   if (!bar || !hero) return;
   const btn = $("button", bar);
+  let heroVisible = true;
+  let footerVisible = false;
+
+  // The bar slides in once the hero is gone and slides out again at the footer.
+  const render = () => {
+    const show = !heroVisible && !footerVisible;
+    bar.classList.toggle("is-visible", show);
+    bar.setAttribute("aria-hidden", String(!show));
+    btn.tabIndex = show ? 0 : -1;
+  };
+
   inView(hero, () => {
-    bar.classList.remove("is-visible");
-    bar.setAttribute("aria-hidden", "true");
-    btn.tabIndex = -1;
-    return () => {
-      bar.classList.add("is-visible");
-      bar.setAttribute("aria-hidden", "false");
-      btn.tabIndex = 0;
-    };
+    heroVisible = true; render();
+    return () => { heroVisible = false; render(); };
   }, { amount: 0.05 });
+
+  if (footer) {
+    inView(footer, () => {
+      footerVisible = true; render();
+      return () => { footerVisible = false; render(); };
+    }, { margin: "0px 0px 0px 0px" });
+  }
+  render();
 }
 
 /* ------------------------------------------------------------------ */
@@ -616,6 +675,7 @@ function init() {
   initHero();
   initReveals();
   initCompare();
+  initChipsScroll();
   initToggle();
   initTrackCarousels();
   initPeekCarousel();
