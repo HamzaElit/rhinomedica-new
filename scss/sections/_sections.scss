@@ -788,6 +788,15 @@
     justify-content: center;
     margin-top: 40px;
   }
+
+  // Mobile (53:497): one full-width card, dots only, no caption or arrows
+  @include max-md {
+    &__stage { margin-top: 24px; }
+    &__card { border-radius: 10px; }
+    &__caption { display: none; }
+    &__nav { margin-top: 20px; }
+    .cnav__btn { display: none; }
+  }
 }
 
 // =====================================================================

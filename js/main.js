@@ -373,7 +373,8 @@ function initPeekCarousel() {
   function layout(animated = true) {
     const stageW = stage.clientWidth;
     const cardW = cards[0].offsetWidth;
-    const offset = cardW * (stageW < 600 ? 0.86 : 0.96);
+    const single = window.innerWidth < 768; // mobile: one slide at a time, no peeking
+    const offset = single ? cardW + 24 : cardW * 0.96;
 
     cards.forEach((card, i) => {
       let rel = (i - index + n) % n;
@@ -382,8 +383,8 @@ function initPeekCarousel() {
       const visible = Math.abs(rel) <= 1;
       const target = {
         x: rel * offset,
-        scale: isCenter ? 1 : 0.8,
-        opacity: isCenter ? 1 : visible ? 0.85 : 0,
+        scale: isCenter || single ? 1 : 0.8,
+        opacity: isCenter ? 1 : visible && !single ? 0.85 : 0,
       };
       card.style.zIndex = isCenter ? 3 : visible ? 2 : 1;
       card.setAttribute("aria-hidden", String(!isCenter));

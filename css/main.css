@@ -1760,6 +1760,23 @@ html.js.motion-ok .words .w__i {
   justify-content: center;
   margin-top: 40px;
 }
+@media (max-width: 767px) {
+  .voices__stage {
+    margin-top: 24px;
+  }
+  .voices__card {
+    border-radius: 10px;
+  }
+  .voices__caption {
+    display: none;
+  }
+  .voices__nav {
+    margin-top: 20px;
+  }
+  .voices .cnav__btn {
+    display: none;
+  }
+}
 
 .proof__grid {
   display: grid;
