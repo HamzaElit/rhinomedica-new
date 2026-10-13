@@ -428,6 +428,9 @@ html.js.motion-ok .words .w__i {
   gap: 4px;
   flex-wrap: wrap;
 }
+.chips[hidden] {
+  display: none;
+}
 @media (max-width: 767px) {
   .chips {
     flex-wrap: nowrap;
@@ -1423,33 +1426,74 @@ html.js.motion-ok .words .w__i {
 .healing__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 40px;
+  gap: 24px;
   align-items: center;
+  justify-items: start;
+}
+@media (min-width: 768px) {
+  .healing__grid {
+    gap: 40px;
+    justify-items: center;
+  }
 }
 @media (min-width: 1200px) {
   .healing__grid {
     grid-template-columns: minmax(0, 540px) minmax(0, 606px);
-    gap: 54px;
+    grid-template-areas: "text photos" "cta photos";
+    column-gap: 54px;
+    row-gap: 32px;
+    justify-items: start;
   }
 }
 .healing__text {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-width: 0;
+  width: 100%;
 }
 @media (min-width: 768px) {
   .healing__text {
     gap: 32px;
+    max-width: 640px;
+  }
+}
+@media (min-width: 1200px) {
+  .healing__text {
+    grid-area: text;
+    align-self: end;
+    max-width: none;
+  }
+}
+.healing__cta {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+@media (min-width: 1200px) {
+  .healing__cta {
+    grid-area: cta;
+    align-self: start;
+    justify-content: flex-start;
   }
 }
 .healing__timeline {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 7.4px;
+  width: 100%;
+  max-width: 320px;
 }
 @media (min-width: 768px) {
   .healing__timeline {
     gap: 14px;
+    max-width: 606px;
+  }
+}
+@media (min-width: 1200px) {
+  .healing__timeline {
+    grid-area: photos;
+    align-self: center;
   }
 }
 .healing__phase {
@@ -1487,6 +1531,13 @@ html.js.motion-ok .words .w__i {
   left: 10px;
   right: 10px;
   bottom: 10px;
+}
+@media (max-width: 767px) {
+  .healing__phase figcaption {
+    display: none;
+  }
+}
+.healing__phase figcaption {
   padding: 6px 10px;
   border-radius: 8px;
   background: rgba(247, 243, 240, 0.9);
@@ -1887,7 +1938,6 @@ html.js.motion-ok .words .w__i {
 @media (min-width: 768px) and (max-width: 1199px) {
   .sim__text .cta,
   .piezo__text .cta,
-  .healing__text .cta,
   .proof__text .cta {
     align-self: center;
   }

@@ -680,14 +680,23 @@
 // HEILUNG & NACHSORGE (Figma 127:198)
 // =====================================================================
 .healing {
+  // Mobile (51:438) / tablet (173:188): title, copy, three photos, CTA last
+  // Desktop (127:198): text + CTA left, photos right
   &__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 40px;
+    gap: 24px;
     align-items: center;
+    justify-items: start;
+    @include md { gap: 40px; justify-items: center; }
     @include lg {
       grid-template-columns: minmax(0, 540px) minmax(0, 606px);
-      gap: 54px;
+      grid-template-areas:
+        "text photos"
+        "cta photos";
+      column-gap: 54px;
+      row-gap: 32px;
+      justify-items: start;
     }
   }
 
@@ -695,14 +704,27 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    @include md { gap: 32px; }
+    min-width: 0;
+    width: 100%;
+    @include md { gap: 32px; max-width: 640px; }
+    @include lg { grid-area: text; align-self: end; max-width: none; }
+  }
+
+  &__cta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    @include lg { grid-area: cta; align-self: start; justify-content: flex-start; }
   }
 
   &__timeline {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    @include md { gap: 14px; }
+    gap: 7.4px;
+    width: 100%;
+    max-width: 320px;
+    @include md { gap: 14px; max-width: 606px; }
+    @include lg { grid-area: photos; align-self: center; }
   }
 
   &__phase {
@@ -726,6 +748,7 @@
       left: 10px;
       right: 10px;
       bottom: 10px;
+      @include max-md { display: none; } // Figma mobile shows the photos only
       padding: 6px 10px;
       border-radius: 8px;
       background: rgba(247, 243, 240, 0.9);
@@ -1039,7 +1062,6 @@
 @media (min-width: 768px) and (max-width: 1199px) {
   .sim__text,
   .piezo__text,
-  .healing__text,
   .proof__text {
     .cta { align-self: center; }
   }

@@ -266,20 +266,21 @@ function initToggle() {
   const setChipsVisible = async (visible) => {
     if (!chips) return;
     if (REDUCED) { chips.hidden = !visible; return; }
+    // The row's own height and the 16px gap above it collapse together, so nothing jumps.
+    const gap = parseFloat(getComputedStyle(chips.parentElement).rowGap || getComputedStyle(chips.parentElement).gap) || 16;
+    const reset = () => { chips.style.height = ""; chips.style.overflow = ""; chips.style.marginTop = ""; };
     if (visible) {
       chips.hidden = false;
       const h = chips.scrollHeight;
       chips.style.overflow = "hidden";
-      await animate(chips, { opacity: [0, 1], height: [0, h] }, { duration: 0.4, ease: EASE });
-      chips.style.height = "";
-      chips.style.overflow = "";
+      await animate(chips, { opacity: [0, 1], height: [0, h], marginTop: [-gap, 0] }, { duration: 0.4, ease: EASE });
+      reset();
     } else {
       const h = chips.scrollHeight;
       chips.style.overflow = "hidden";
-      await animate(chips, { opacity: [1, 0], height: [h, 0] }, { duration: 0.3, ease: "easeIn" });
+      await animate(chips, { opacity: [1, 0], height: [h, 0], marginTop: [0, -gap] }, { duration: 0.3, ease: "easeIn" });
       chips.hidden = true;
-      chips.style.height = "";
-      chips.style.overflow = "";
+      reset();
     }
   };
 
