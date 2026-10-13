@@ -342,7 +342,8 @@
 
   &__media {
     aspect-ratio: 600 / 500;
-    @include max-md { aspect-ratio: 320 / 300; }
+    // phones: the photo's own ratio, so both profiles stay fully visible
+    @include max-md { aspect-ratio: 1264 / 949; }
   }
 
   &__text {
