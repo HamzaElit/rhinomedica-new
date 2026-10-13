@@ -765,7 +765,7 @@
     }
     &:nth-child(3) > img { object-position: 0% 71%; }
 
-    &[aria-hidden="true"] {
+    &[inert] {
       pointer-events: none;
     }
   }

@@ -387,9 +387,10 @@ function initPeekCarousel() {
         opacity: isCenter ? 1 : visible && !single ? 0.85 : 0,
       };
       card.style.zIndex = isCenter ? 3 : visible ? 2 : 1;
-      card.setAttribute("aria-hidden", String(!isCenter));
+      // `inert` keeps hidden slides out of the tab order and the accessibility tree
+      // without hiding a focused element (which browsers flag for aria-hidden).
+      card.inert = !isCenter;
       card.classList.toggle("is-active", isCenter);
-      $$("button", card).forEach((b) => (b.tabIndex = isCenter ? 0 : -1));
       animate(card, target, animated && !REDUCED ? SPRING : { duration: 0 });
     });
 

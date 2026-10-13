@@ -1733,7 +1733,7 @@ html.js.motion-ok .words .w__i {
 .voices__card:nth-child(3) > img {
   object-position: 0% 71%;
 }
-.voices__card[aria-hidden=true] {
+.voices__card[inert] {
   pointer-events: none;
 }
 .voices__caption {
