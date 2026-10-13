@@ -1,0 +1,51 @@
+// Design tokens — values taken from the Figma file "Rhinomedica DE – LP".
+$bp-md: 768px;
+$bp-lg: 1200px;
+
+@mixin md { @media (min-width: $bp-md) { @content; } }
+@mixin lg { @media (min-width: $bp-lg) { @content; } }
+@mixin max-md { @media (max-width: ($bp-md - 1px)) { @content; } }
+@mixin max-lg { @media (max-width: ($bp-lg - 1px)) { @content; } }
+@mixin motion-ok { @media (prefers-reduced-motion: no-preference) { @content; } }
+@mixin hover { @media (hover: hover) and (pointer: fine) { &:hover { @content; } } }
+
+:root {
+  // Brand palette (Figma colour swatches 1:7 – 1:11)
+  --plum: #713b67;
+  --plum-deep: #4d2645;
+  --plum-shadow: rgba(51, 26, 51, 0.25);
+  --cream: #f7f3f0;
+  --mint: #d7e7e2;
+  --ink: #1d2935;
+  --coral: #ff6f61;
+  --grey: #80898e;
+  --grey-light: #cdd4d3;
+  --line: #e4e9e8;
+  --white: #ffffff;
+
+  --font: "Outfit", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --container: 1440px;
+  --gutter: 35px;
+  --section-y: 54px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-pill: 95px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur: 320ms;
+
+  --shadow-card: 0 20px 20px var(--plum-shadow);
+  --shadow-soft: 0 12px 32px rgba(29, 41, 53, 0.12);
+
+  @include md {
+    --gutter: 64px;
+    --section-y: 80px;
+  }
+  @include lg {
+    --gutter: 120px;
+    --section-y: 110px;
+  }
+}

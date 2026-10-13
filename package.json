@@ -1,0 +1,17 @@
+{
+  "name": "rhinomedica-lp",
+  "version": "1.0.0",
+  "scripts": {
+    "build:css": "sass scss/main.scss css/main.css --style=compressed --no-source-map",
+    "watch:css": "sass --watch scss/main.scss css/main.css --style=expanded",
+    "dev": "python -m http.server 5173"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Rhinomedica DE landing page (HTML/SCSS/JS, Motion animations)",
+  "devDependencies": {
+    "sass": "^1.105.1"
+  },
+  "private": true
+}

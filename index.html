@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rhinomedica – Deine Nasenkorrektur, gemeinsam mit Dir geplant</title>
+  <meta name="description" content="Nasenkorrektur in Istanbul ab 3.900 €: behandelt von HNO-Chirurgen, 3D-Simulation vor der OP, Ultraschall-Piezo-Technik und deutschsprachige Betreuung.">
+  <meta name="theme-color" content="#713b67">
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/favicon/favicon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" sizes="180x180">
+  <meta property="og:title" content="Rhinomedica – Deine Nasenkorrektur, gemeinsam mit Dir geplant">
+  <meta property="og:description" content="Nasenkorrektur in Istanbul ab 3.900 €. 3D-Simulation, Piezo-Technik, deutschsprachiges Team.">
+  <meta property="og:image" content="assets/img/web/hero.webp">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/img/web/hero.webp" media="(min-width: 1200px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/web/hero-tablet.webp" media="(min-width: 768px) and (max-width: 1199px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/web/hero-mobile.webp" media="(max-width: 767px)" fetchpriority="high">
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/motion@14.1.0/+esm">
+  <link rel="stylesheet" href="css/main.css">
+  <script>
+    // Mark JS/motion availability before first paint so reveal targets can start hidden.
+    (function () {
+      var root = document.documentElement;
+      root.classList.add("js");
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        root.classList.add("motion-ok");
+        // Safety net: if the animation module never loads, show everything.
+        window.setTimeout(function () {
+          if (!window.__motionReady) root.classList.remove("motion-ok");
+        }, 3000);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <!-- ============================== HERO ============================== -->
+  <header class="hero" id="top">
+    <div class="hero__media">
+      <picture>
+        <source media="(min-width: 1200px)" srcset="assets/img/web/hero.webp" width="1920" height="557">
+        <source media="(min-width: 768px)" srcset="assets/img/web/hero-tablet.webp" width="1536" height="1120">
+        <img src="assets/img/web/hero-mobile.webp" width="390" height="816" alt="" fetchpriority="high" decoding="async">
+      </picture>
+    </div>
+    <div class="hero__scrim" aria-hidden="true"></div>
+
+    <div class="container hero__inner">
+      <a class="hero__logo" href="#top" aria-label="Rhinomedica – zum Seitenanfang">
+        <img src="assets/svg/logo.svg" width="192" height="18" alt="Rhinomedica">
+      </a>
+
+      <div class="hero__content">
+        <h1 class="display hero__title" data-words>Deine Nasenkorrektur, gemeinsam mit Dir geplant.</h1>
+
+        <ul class="bullets bullets--light hero__bullets">
+          <li>Behandelt von HNO-Chirurgen</li>
+          <li>3D-Simulation vor der OP</li>
+          <li>Ultraschall-Piezo-Technik</li>
+          <li>Flexible Ratenzahlung möglich</li>
+        </ul>
+
+        <div class="cta cta--light hero__cta">
+          <button class="btn btn--coral" type="button" data-open-modal>Angebot Anfordern</button>
+          <span class="cta__note">In nur 7 Tagen zu Deiner Wunschnase in Istanbul</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ======================= VORHER / NACHHER ======================= -->
+    <section class="section section--white ba" id="vorher-nachher" aria-labelledby="ba-title">
+      <div class="container ba__grid">
+        <div class="ba__text">
+          <h2 class="h2" id="ba-title" data-words data-reveal="words">Deine Nase ist einzigartig. Unsere Lösung auch.</h2>
+          <p class="lead" data-reveal>Wir planen jede Korrektur gemeinsam mit Dir. Schritt für Schritt, verständlich und passend zu Deinem Gesicht.</p>
+
+          <div class="ba__controls" data-reveal>
+            <div class="toggle" role="tablist" aria-label="Ansicht wählen" data-active="0">
+              <span class="toggle__thumb" aria-hidden="true"></span>
+              <button class="toggle__btn" type="button" role="tab" aria-selected="true" aria-controls="pane-op" id="tab-op">OP Bilder</button>
+              <button class="toggle__btn" type="button" role="tab" aria-selected="false" aria-controls="pane-ergebnisse" id="tab-ergebnisse">Ergebnisse</button>
+            </div>
+
+            <div class="chips" role="group" aria-label="Nasenform wählen" id="chips">
+              <button class="chip" type="button" aria-pressed="true"  data-before="assets/img/web/op-krumme-before.webp"   data-after="assets/img/web/op-krumme-after.webp">Krumme Nase</button>
+              <button class="chip" type="button" aria-pressed="false" data-before="assets/img/web/op-hoecker-before.webp"  data-after="assets/img/web/op-hoecker-after.webp">Höckernase</button>
+              <button class="chip" type="button" aria-pressed="false" data-before="assets/img/web/op-breite-before.webp"   data-after="assets/img/web/op-breite-after.webp">Breite Nase</button>
+              <button class="chip" type="button" aria-pressed="false" data-before="assets/img/web/op-spitze-before.webp"   data-after="assets/img/web/op-spitze-after.webp">Nasenspitzen</button>
+              <button class="chip" type="button" aria-pressed="false" data-before="assets/img/web/op-revision-before.webp" data-after="assets/img/web/op-revision-after.webp">Revisionen</button>
+            </div>
+          </div>
+
+          <div class="cta" data-reveal>
+            <button class="btn" type="button" data-open-modal>Angebot Anfordern</button>
+            <span class="cta__note">kostenlos &amp; unverbindlich</span>
+          </div>
+        </div>
+
+        <div class="ba__panes">
+          <!-- Pane 1: interactive compare slider -->
+          <div class="ba__pane" id="pane-op" role="tabpanel" aria-labelledby="tab-op">
+            <div class="compare" id="compare" data-reveal="clip">
+              <img class="compare__img compare__img--before" src="assets/img/web/op-krumme-before.webp" width="900" height="1200" alt="Nase vor der Operation" loading="lazy" decoding="async">
+              <img class="compare__img compare__img--after"  src="assets/img/web/op-krumme-after.webp"  width="900" height="1200" alt="Nase direkt nach der Operation" loading="lazy" decoding="async">
+              <span class="compare__label compare__label--before" aria-hidden="true">Vorher</span>
+              <span class="compare__label compare__label--after" aria-hidden="true">Nachher</span>
+              <span class="compare__divider" aria-hidden="true"></span>
+              <input class="compare__range" type="range" min="0" max="100" value="50" step="0.1" aria-label="Vergleich zwischen Vorher und Nachher verschieben">
+              <span class="compare__handle" aria-hidden="true"><img src="assets/svg/ba-handle.svg" width="42" height="42" alt=""></span>
+            </div>
+          </div>
+
+          <!-- Pane 2: result videos -->
+          <div class="ba__pane ba__video" id="pane-ergebnisse" role="tabpanel" aria-labelledby="tab-ergebnisse" hidden>
+            <div class="proof__viewport" data-carousel="videos">
+              <div class="proof__track c-track">
+                <div class="c-slide" style="flex:0 0 100%">
+                  <div class="ba__video-card">
+                    <img src="assets/img/web/video-ergebnisse.webp" width="1200" height="675" alt="Patientin erzählt von ihrem Ergebnis" loading="lazy" decoding="async">
+                    <button class="play" type="button" aria-label="Video abspielen: Erfahrungsbericht 1"><img class="play__icon" src="assets/svg/play-md.svg" width="50" height="50" alt=""></button>
+                  </div>
+                </div>
+                <div class="c-slide" style="flex:0 0 100%">
+                  <div class="ba__video-card">
+                    <img src="assets/img/web/video-2.webp" width="562" height="1000" alt="Patientin erzählt von ihrem Ergebnis" loading="lazy" decoding="async">
+                    <button class="play" type="button" aria-label="Video abspielen: Erfahrungsbericht 2"><img class="play__icon" src="assets/svg/play-md.svg" width="50" height="50" alt=""></button>
+                  </div>
+                </div>
+                <div class="c-slide" style="flex:0 0 100%">
+                  <div class="ba__video-card">
+                    <img src="assets/img/web/video-3.webp" width="545" height="1000" alt="Patientin erzählt von ihrem Ergebnis" loading="lazy" decoding="async">
+                    <button class="play" type="button" aria-label="Video abspielen: Erfahrungsbericht 3"><img class="play__icon" src="assets/svg/play-md.svg" width="50" height="50" alt=""></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <nav class="cnav" aria-label="Ergebnis-Videos" data-carousel-nav="videos">
+              <button class="cnav__btn" type="button" data-prev aria-label="Vorheriges Video"><img src="assets/svg/chevron-left.svg" width="20" height="20" alt=""></button>
+              <div class="cnav__dots" role="tablist" aria-label="Video auswählen"></div>
+              <button class="cnav__btn" type="button" data-next aria-label="Nächstes Video"><img src="assets/svg/chevron-right.svg" width="20" height="20" alt=""></button>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= 3D-SIMULATION ========================= -->
+    <section class="section section--cream sim" id="simulation" aria-labelledby="sim-title">
+      <div class="container sim__grid">
+        <figure class="reveal-img sim__media" data-reveal="clip">
+          <img src="assets/img/web/sim-3d.webp" width="1264" height="949" alt="3D-Simulation: Profil vor und nach der geplanten Nasenkorrektur" loading="lazy" decoding="async">
+        </figure>
+        <div class="sim__text">
+          <h2 class="h2" id="sim-title" data-words data-reveal="words">So sieht Deine geplante Nase aus - <em class="accent">bevor</em> sie operiert wird.</h2>
+          <p class="lead" data-reveal>Mit der 3D-Simulation siehst Du Dein mögliches Ergebnis schon vor der OP. Gemeinsam mit unseren HNO-Ärzten wird Deine Nase so geplant, dass sie zu Deinem Gesicht passt - realistisch, nachvollziehbar und medizinisch fundiert.</p>
+          <div class="cta" data-reveal>
+            <button class="btn" type="button" data-open-modal>Angebot Anfordern</button>
+            <span class="cta__note">kostenlos &amp; unverbindlich</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= LEISTUNGEN & PREIS ======================= -->
+    <section class="section section--plum price" id="leistungen" aria-labelledby="price-title">
+      <div class="container">
+        <div class="price__header">
+          <h2 class="h2" id="price-title" data-words data-reveal="words">Alles enthalten, was für eine professionelle Nasenkorrektur zählt.</h2>
+          <p class="lead" data-reveal>Professionell geplant, medizinisch durchgeführt &amp; umfassend betreut.</p>
+        </div>
+
+        <div class="price__cards" data-reveal-stagger>
+          <div class="price__bundle">
+            <div class="price__card price__card--img">
+              <img src="assets/img/web/leistungen.webp" width="1400" height="523" alt="" loading="lazy" decoding="async">
+              <p class="price__num"><span class="price__val" data-count="3900" data-prefix="Ab " data-suffix="€">Ab 3.900€</span><i class="price__line" aria-hidden="true"></i></p>
+            </div>
+            <div class="price__card price__card--list">
+              <p class="price__label">Dabei inkludiert:</p>
+              <ul class="bullets">
+                <li>Luxuriöser Aufenthalt inkl. Transfer</li>
+                <li>Persönlicher Assistent vor Ort</li>
+                <li>Dolmetscherservice</li>
+                <li>Innovative Ultraschall-Piezo-Technik</li>
+                <li>Individuelle 3D Ergebnis-Simulation</li>
+                <li>Chefarztbehandlung vom HNO-Chirurgen</li>
+                <li>Umfassende medizinische Voruntersuchungen</li>
+              </ul>
+            </div>
+          </div>
+          <div class="price__card price__card--outline">
+            <h3 class="h3">Einfach per Raten zahlen</h3>
+            <p>Bei entsprechender Bonität kannst Du Deine Behandlung auch bequem in Raten zahlen.</p>
+            <p><strong>0€ Anzahlung!</strong> Bestimme mit unserem Ratenplaner entspannt selbst, wie du deine Behandlung in bis zu <strong>72 Raten</strong> zahlen möchtest.</p>
+          </div>
+          <div class="price__cta">
+            <div class="cta cta--light">
+              <button class="btn btn--coral" type="button" data-open-modal>Fotos Hochladen &amp;<br>Beraten Lassen</button>
+              <span class="cta__note">kostenlos &amp; unverbindlich</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= PIEZO-METHODE ========================= -->
+    <section class="section section--white piezo" id="methode" aria-labelledby="piezo-title">
+      <div class="container piezo__grid">
+        <h2 class="h2" id="piezo-title" data-words data-reveal="words">Die Methode, mit der Dein Nasenknochen <em class="accent">geformt<i class="stroke" aria-hidden="true"></i></em> wird - statt gebrochen.</h2>
+        <div class="piezo__text">
+          <p class="lead" data-reveal>Mit Piezo-Ultraschall wird Deine Nase präzise korrigiert - für weniger Schwellung, weniger Schmerzen und eine schnellere Heilung.</p>
+          <ul class="bullets" data-reveal-stagger>
+            <li>Gezielte Formung des Knochens</li>
+            <li>Schonender für Haut, Gefäße und Nerven</li>
+            <li>Schnellerer Heilungsverlauf</li>
+          </ul>
+          <div class="cta" data-reveal>
+            <button class="btn" type="button" data-open-modal>Angebot Anfordern</button>
+            <span class="cta__note">kostenlos &amp; unverbindlich</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== OPTISCH & FUNKTIONAL ====================== -->
+    <section class="section section--cream fit" id="passt" aria-labelledby="fit-title">
+      <div class="container fit__inner">
+        <h2 class="h2" id="fit-title" data-words data-reveal="words">Eine Nase, die passt. Optisch &amp; funktional</h2>
+        <div class="fit__text lead" data-reveal>
+          <p>Gut aussehen. Frei atmen. Genau so planen wir Deine Nase.</p>
+          <p>Bei Rhinomedica wirst Du von erfahrenen HNO-Chirurgen behandelt. So stellen wir sicher, dass Deine neue Nase zu Deinem Gesicht passt - und Du dabei problemlos atmen kannst.</p>
+        </div>
+        <div class="cta" data-reveal>
+          <button class="btn" type="button" data-open-modal>Angebot Anfordern</button>
+          <span class="cta__note">kostenlos &amp; unverbindlich</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DEUTSCHSPRACHIGES TEAM ===================== -->
+    <section class="section section--white team" id="team" aria-labelledby="team-title">
+      <div class="container team__grid">
+        <div class="team__text">
+          <h2 class="h2" id="team-title" data-words data-reveal="words">Plane Deine Behandlung mit unserem deutschsprachigen Team.</h2>
+          <p class="lead" data-reveal>In Deutschland wirst Du von unseren deutschsprachigen Experten beraten, analysiert und vorbereitet - in Istanbul wird Deine OP nach Plan umgesetzt.</p>
+          <div class="cta" data-reveal>
+            <button class="btn" type="button" data-open-modal>Fotos Hochladen &amp;<br>Beraten Lassen</button>
+            <span class="cta__note">kostenlos &amp; unverbindlich</span>
+          </div>
+        </div>
+
+        <ol class="team__steps" data-reveal-stagger>
+          <li class="team__step team__step--right">
+            <img src="assets/img/web/team-1.webp" width="588" height="136" alt="" loading="lazy" decoding="async">
+            <span>4 Fotos Deiner<br>Nase hochladen</span>
+          </li>
+          <li class="team__step team__step--left">
+            <img src="assets/img/web/team-2.webp" width="589" height="137" alt="" loading="lazy" decoding="async">
+            <span>Telefonische<br>Beratung mit unserem<br>Team buchen</span>
+          </li>
+          <li class="team__step team__step--right">
+            <img src="assets/img/web/team-3.webp" width="589" height="137" alt="" loading="lazy" decoding="async">
+            <span>Persönliches Angebot &amp;<br>Behandlungsplan erhalten</span>
+          </li>
+          <li class="team__step team__step--left">
+            <img src="assets/img/web/team-4.webp" width="588" height="137" alt="" loading="lazy" decoding="async">
+            <span>OP nach Plan in der<br>ElitKlinik Istanbul</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ====================== HEILUNG & NACHSORGE ====================== -->
+    <section class="section section--cream healing" id="heilung" aria-labelledby="healing-title">
+      <div class="container healing__grid">
+        <div class="healing__text">
+          <h2 class="h2" id="healing-title" data-words data-reveal="words">Heilung dauert 12 Monate - wir bleiben an Deiner Seite</h2>
+          <p class="lead" data-reveal>Unser Team begleitet Dich durch jede Phase Deiner Heilung. Mit digitaler Verlaufskontrolle, klaren Infos und festen Ansprechpartnern bist Du auch nach der OP jederzeit gut betreut.</p>
+          <div class="cta" data-reveal>
+            <button class="btn" type="button" data-open-modal>Angebot Anfordern</button>
+            <span class="cta__note">kostenlos &amp; unverbindlich</span>
+          </div>
+        </div>
+
+        <div class="healing__timeline" data-reveal-stagger>
+          <figure class="healing__phase">
+            <img src="assets/img/web/heilung-1.webp" width="461" height="900" alt="Profil einer Patientin vor der Nasenkorrektur" loading="lazy" decoding="async">
+            <figcaption>Vorher</figcaption>
+          </figure>
+          <figure class="healing__phase">
+            <img src="assets/img/web/heilung-2.webp" width="463" height="900" alt="Profil einer Patientin kurz nach der OP mit Nasenschiene" loading="lazy" decoding="async">
+            <figcaption>Kurz nach der OP</figcaption>
+          </figure>
+          <figure class="healing__phase">
+            <img src="assets/img/web/heilung-3.webp" width="463" height="900" alt="Profil einer Patientin nach abgeschlossener Heilung" loading="lazy" decoding="async">
+            <figcaption>Nach der Heilung</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= PATIENTENSTIMMEN ======================= -->
+    <section class="section voices" id="stimmen" aria-labelledby="voices-title">
+      <div class="container">
+        <div class="voices__header">
+          <h2 class="h2" id="voices-title" data-words data-reveal="words">Das sagen unsere Patienten</h2>
+          <p class="lead" data-reveal>Ein Blick auf Erfahrungen mit Rhinomedica.</p>
+        </div>
+
+        <div class="voices__carousel" data-peek>
+          <div class="voices__stage">
+            <article class="voices__card" data-name="Patient" data-treatment="Krumme Nase">
+              <img src="assets/img/web/video-1.webp" width="602" height="1000" alt="Patient berichtet über seine Nasenkorrektur" loading="lazy" decoding="async">
+              <button class="play" type="button" aria-label="Video abspielen: Patient, Krumme Nase"><img class="play__icon" src="assets/svg/play-sm.svg" width="50" height="50" alt=""></button>
+            </article>
+            <article class="voices__card" data-name="Patientin" data-treatment="Höckernase">
+              <img src="assets/img/web/video-2.webp" width="562" height="1000" alt="Patientin berichtet über ihre Nasenkorrektur" loading="lazy" decoding="async">
+              <button class="play" type="button" aria-label="Video abspielen: Patientin, Höckernase"><img class="play__icon" src="assets/svg/play-lg.svg" width="63" height="63" alt=""></button>
+            </article>
+            <article class="voices__card" data-name="Patientin" data-treatment="Nasenspitze">
+              <img src="assets/img/web/video-3.webp" width="545" height="1000" alt="Patientin berichtet über ihre Nasenkorrektur" loading="lazy" decoding="async">
+              <button class="play" type="button" aria-label="Video abspielen: Patientin, Nasenspitze"><img class="play__icon" src="assets/svg/play-sm.svg" width="50" height="50" alt=""></button>
+            </article>
+          </div>
+
+          <p class="voices__caption" aria-live="polite">
+            <strong data-caption-name>Patientin</strong>
+            <span data-caption-treatment>Höckernase</span>
+          </p>
+
+          <nav class="cnav voices__nav" aria-label="Patientenstimmen">
+            <button class="cnav__btn" type="button" data-prev aria-label="Vorherige Patientenstimme"><img src="assets/svg/chevron-left.svg" width="20" height="20" alt=""></button>
+            <div class="cnav__dots" role="tablist" aria-label="Patientenstimme auswählen"></div>
+            <button class="cnav__btn" type="button" data-next aria-label="Nächste Patientenstimme"><img src="assets/svg/chevron-right.svg" width="20" height="20" alt=""></button>
+          </nav>
+        </div>
+
+        <div class="voices__cta" data-reveal>
+          <div class="cta">
+            <button class="btn" type="button" data-open-modal>Angebot Anfordern</button>
+            <span class="cta__note">kostenlos &amp; unverbindlich</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= SOCIAL PROOF ========================= -->
+    <section class="section section--white proof" id="ergebnisse" aria-labelledby="proof-title">
+      <div class="container proof__grid">
+        <div class="proof__text">
+          <h2 class="h2" id="proof-title" data-words data-reveal="words">Tausende haben ihre Nase mit uns geplant - jetzt bist Du dran.</h2>
+          <p class="lead" data-reveal>Plane jetzt gemeinsam mit unserem Team Deine Nasenkorrektur - strukturiert, persönlich und genau auf Dich abgestimmt.</p>
+          <div class="cta" data-reveal>
+            <button class="btn" type="button" data-open-modal>Fotos Hochladen &amp;<br>Beraten Lassen</button>
+            <span class="cta__note">kostenlos &amp; unverbindlich</span>
+          </div>
+        </div>
+
+        <div class="proof__gallery" data-reveal>
+          <div class="proof__viewport" data-carousel="proof">
+            <div class="proof__track c-track">
+              <div class="proof__slide c-slide">
+                <figure class="proof__shot"><img src="assets/img/web/vn1-before.webp" width="750" height="1000" alt="Vorher: Profil vor der Nasenkorrektur" loading="lazy" decoding="async"><figcaption class="proof__tag">Vorher</figcaption></figure>
+                <figure class="proof__shot"><img src="assets/img/web/vn1-after.webp"  width="750" height="1000" alt="Nachher: Profil nach der Nasenkorrektur" loading="lazy" decoding="async"><figcaption class="proof__tag">Nachher</figcaption></figure>
+              </div>
+              <div class="proof__slide c-slide">
+                <figure class="proof__shot"><img src="assets/img/web/vn2-before.webp" width="750" height="1000" alt="Vorher: Profil vor der Nasenkorrektur" loading="lazy" decoding="async"><figcaption class="proof__tag">Vorher</figcaption></figure>
+                <figure class="proof__shot"><img src="assets/img/web/vn2-after.webp"  width="750" height="1000" alt="Nachher: Profil nach der Nasenkorrektur" loading="lazy" decoding="async"><figcaption class="proof__tag">Nachher</figcaption></figure>
+              </div>
+              <div class="proof__slide c-slide">
+                <figure class="proof__shot"><img src="assets/img/web/vn3-before.webp" width="750" height="1000" alt="Vorher: Profil vor der Nasenkorrektur" loading="lazy" decoding="async"><figcaption class="proof__tag">Vorher</figcaption></figure>
+                <figure class="proof__shot"><img src="assets/img/web/vn3-after.webp"  width="750" height="1000" alt="Nachher: Profil nach der Nasenkorrektur" loading="lazy" decoding="async"><figcaption class="proof__tag">Nachher</figcaption></figure>
+              </div>
+              <div class="proof__slide c-slide">
+                <figure class="proof__shot"><img src="assets/img/web/vn4-before.webp" width="1000" height="750" alt="Vorher: Profil vor der Nasenkorrektur" loading="lazy" decoding="async"><figcaption class="proof__tag">Vorher</figcaption></figure>
+                <figure class="proof__shot"><img src="assets/img/web/vn4-after.webp"  width="1000" height="750" alt="Nachher: Profil nach der Nasenkorrektur" loading="lazy" decoding="async"><figcaption class="proof__tag">Nachher</figcaption></figure>
+              </div>
+              <div class="proof__slide c-slide">
+                <figure class="proof__shot"><img src="assets/img/web/vn5-before.webp" width="562" height="1000" alt="Vorher: Profil vor der Nasenkorrektur" loading="lazy" decoding="async"><figcaption class="proof__tag">Vorher</figcaption></figure>
+                <figure class="proof__shot"><img src="assets/img/web/vn5-after.webp"  width="562" height="1000" alt="Nachher: Profil nach der Nasenkorrektur" loading="lazy" decoding="async"><figcaption class="proof__tag">Nachher</figcaption></figure>
+              </div>
+            </div>
+          </div>
+          <nav class="cnav" aria-label="Vorher-Nachher-Galerie" data-carousel-nav="proof">
+            <button class="cnav__btn" type="button" data-prev aria-label="Vorheriges Beispiel"><img src="assets/svg/chevron-left.svg" width="20" height="20" alt=""></button>
+            <div class="cnav__dots" role="tablist" aria-label="Beispiel auswählen"></div>
+            <button class="cnav__btn" type="button" data-next aria-label="Nächstes Beispiel"><img src="assets/svg/chevron-right.svg" width="20" height="20" alt=""></button>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================== FAQ + FOOTER =========================== -->
+    <section class="section section--cream faq" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 class="h2 faq__title" id="faq-title" data-words data-reveal="words">FAQ-Häufig gestellte Fragen</h2>
+
+        <div class="faq__list" data-reveal-stagger>
+          <div class="faq__item">
+            <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a-1" id="faq-q-1">Bin ich geeignet für die Nasenkorrektur?<img class="faq__icon" src="assets/svg/faq-chevron-down.svg" width="17" height="10" alt=""></button></h3>
+            <div class="faq__a" id="faq-a-1" role="region" aria-labelledby="faq-q-1" data-open="false">
+              <div class="faq__a-inner">
+                <p>Dein allgemeiner Gesundheitszustand und Deine Ziele für die Behandlung spielen eine wichtige Rolle bei der Entscheidung, ob eine Nasenkorrektur für Dich geeignet ist. Ein Erstgespräch mit unseren HNO-Spezialisten hilft Dir, Klarheit zu bekommen.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <h3><button class="faq__q" type="button" aria-expanded="true" aria-controls="faq-a-2" id="faq-q-2">Was kostet eine Nasenkorrektur?<img class="faq__icon" src="assets/svg/faq-chevron-down.svg" width="17" height="10" alt=""></button></h3>
+            <div class="faq__a" id="faq-a-2" role="region" aria-labelledby="faq-q-2" data-open="true">
+              <div class="faq__a-inner">
+                <p>Unsere All-Inclusive-Nasenkorrektur beginnt ab 3.900 €. Dieser Preis beinhaltet den gesamten Aufenthalt, inklusive Hotel, Transfers, 3D-Simulation, Medikamente und Nachsorge.</p>
+                <button class="btn" type="button" data-open-modal>Angebot Anfordern</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a-3" id="faq-q-3">Wie lange muss ich in Istanbul bleiben?<img class="faq__icon" src="assets/svg/faq-chevron-down.svg" width="17" height="10" alt=""></button></h3>
+            <div class="faq__a" id="faq-a-3" role="region" aria-labelledby="faq-q-3" data-open="false">
+              <div class="faq__a-inner">
+                <p>Der gesamte Aufenthalt dauert 7 Tage. Am ersten Tag erfolgt die Voruntersuchung, am zweiten Tag die Operation und am siebten Tag die Nachkontrolle.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a-4" id="faq-q-4">Wie lange dauert die Heilungsphase nach der Nasenkorrektur?<img class="faq__icon" src="assets/svg/faq-chevron-down.svg" width="17" height="10" alt=""></button></h3>
+            <div class="faq__a" id="faq-a-4" role="region" aria-labelledby="faq-q-4" data-open="false">
+              <div class="faq__a-inner">
+                <p>Die komplette Heilung kann bis zu einem Jahr dauern, wobei die meisten Schwellungen innerhalb der ersten paar Wochen zurückgehen. Die meisten Patientinnen können nach ein bis zwei Wochen wieder ihrem Alltag nachgehen. Wir begleiten Dich in jeder Phase der Heilung.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a-5" id="faq-q-5">Wird die Nasenkorrektur Narben hinterlassen?<img class="faq__icon" src="assets/svg/faq-chevron-down.svg" width="17" height="10" alt=""></button></h3>
+            <div class="faq__a" id="faq-a-5" role="region" aria-labelledby="faq-q-5" data-open="false">
+              <div class="faq__a-inner">
+                <p>Bei der Ultraschall-Piezo-Technik sorgen unsere erfahrenen Chirurgen dafür, dass die Narben möglichst unsichtbar sind.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer">
+          <a class="footer__logo" href="#top" aria-label="Rhinomedica – zum Seitenanfang"><img src="assets/svg/logo-footer.svg" width="160" height="15" alt="Rhinomedica"></a>
+          <nav class="footer__links" aria-label="Rechtliches">
+            <a href="#impressum">Impressum</a>
+            <a href="#datenschutz">Datenschutz</a>
+            <a href="#agb">AGB</a>
+          </nav>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky CTA (mobile only, appears after the hero) -->
+  <div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+    <button class="btn btn--coral" type="button" data-open-modal tabindex="-1">Angebot Anfordern</button>
+  </div>
+
+  <!-- ============================ LEAD MODAL ============================ -->
+  <div class="modal" id="angebot" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__card">
+      <button class="modal__close" type="button" aria-label="Schließen" data-close-modal>&times;</button>
+      <h2 class="modal__title" id="modal-title">Angebot anfordern</h2>
+      <p class="modal__text">Lade 4 Fotos Deiner Nase hoch und erhalte ein persönliches Angebot inklusive Behandlungsplan - kostenlos &amp; unverbindlich.</p>
+
+      <form class="form" id="lead-form" novalidate>
+        <label class="form__field">Vorname
+          <input type="text" name="firstname" autocomplete="given-name" required>
+        </label>
+        <label class="form__field">Nachname
+          <input type="text" name="lastname" autocomplete="family-name" required>
+        </label>
+        <label class="form__field">E-Mail
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label class="form__field">Telefon
+          <input type="tel" name="phone" autocomplete="tel" required>
+        </label>
+        <label class="form__field form__field--full">Welche Nasenform beschreibt Dich am besten?
+          <select name="treatment">
+            <option value="">Bitte wählen</option>
+            <option>Krumme Nase</option>
+            <option>Höckernase</option>
+            <option>Breite Nase</option>
+            <option>Nasenspitze</option>
+            <option>Revision</option>
+            <option>Ich bin mir nicht sicher</option>
+          </select>
+        </label>
+        <label class="form__field form__field--full form__upload">
+          <span data-upload-label>Fotos Deiner Nase hochladen (bis zu 4)</span>
+          <input type="file" name="photos" accept="image/*" multiple>
+        </label>
+        <label class="form__field form__field--full">Nachricht (optional)
+          <textarea name="message"></textarea>
+        </label>
+        <div class="form__actions">
+          <button class="btn btn--coral" type="submit">Angebot Anfordern</button>
+          <p class="form__legal">Mit dem Absenden stimmst Du der Verarbeitung Deiner Daten gemäß unserer Datenschutzerklärung zu.</p>
+        </div>
+      </form>
+
+      <div class="form__success" id="lead-success" role="status">
+        <strong>Vielen Dank!</strong>
+        Wir melden uns innerhalb von 24 Stunden telefonisch bei Dir.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================ VIDEO LIGHTBOX ============================ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Video" aria-hidden="true">
+    <div class="lightbox__body">
+      <p class="lead" data-lightbox-fallback>Dieses Video wird in Kürze verfügbar sein.</p>
+    </div>
+    <button class="lightbox__close" type="button" aria-label="Video schließen" data-close-lightbox>&times;</button>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

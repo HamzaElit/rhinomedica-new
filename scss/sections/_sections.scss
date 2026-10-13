@@ -1,0 +1,925 @@
+@use "../abstracts/tokens" as *;
+
+// =====================================================================
+// HERO (Figma 127:28 / 10:298 / 178:151)
+// =====================================================================
+.hero {
+  position: relative;
+  min-height: 707px;
+  display: flex;
+  flex-direction: column;
+  color: var(--cream);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--plum-deep);
+
+  @include md { min-height: 952px; }
+  @include lg { min-height: 720px; }
+
+  // Photo box: exact Figma placement per frame (mobile 10:298, tablet 178:151, desktop 127:28)
+  &__media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+    will-change: transform;
+
+    picture { display: contents; }
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+      object-position: center;
+      transform-origin: 50% 40%;
+
+      @include md {
+        width: 182.86%;
+        height: 107.56%;
+        left: -18.29%;
+      }
+      @include lg {
+        width: 172.35%;
+        height: 100%;
+        left: -34.47%;
+      }
+    }
+  }
+
+  // Scrims from Figma, per frame
+  &__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(113, 59, 103, 0) 68.4%, #713b67 89.4%);
+    @include md {
+      background:
+        linear-gradient(180deg, rgba(51, 26, 46, 0.35) 0%, rgba(51, 26, 46, 0) 15%),
+        linear-gradient(180deg, rgba(113, 59, 103, 0) 30%, rgba(113, 59, 103, 0.85) 60%, #713b67 72%);
+    }
+    @include lg {
+      background:
+        linear-gradient(180deg, rgba(112, 59, 102, 0) 60%, rgba(112, 59, 102, 0.6) 100%),
+        linear-gradient(90deg, rgba(77, 38, 69, 0.88) 0%, rgba(77, 38, 69, 0.55) 45%, rgba(77, 38, 69, 0) 75%);
+    }
+  }
+
+  &__inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    @include md { padding-top: 40px; padding-bottom: 72px; }
+    @include lg { padding-top: 48px; padding-bottom: 72px; }
+  }
+
+  &__logo {
+    display: block;
+    width: 160px;
+    @include md { width: 192px; }
+    img { width: 100%; height: auto; }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 66px;
+    margin-top: 70px;
+    @include md { gap: 40px; margin-top: 420px; }
+    @include lg { gap: 48px; margin-top: 56px; max-width: 720px; }
+  }
+
+  &__bullets {
+    gap: 10px;
+    li {
+      font-size: 18px;
+      @include md { font-size: 20px; }
+      &::before { margin-top: 0.15em; }
+    }
+    @include md {
+      display: grid;
+      grid-template-columns: repeat(2, 312px);
+      column-gap: 16px;
+      row-gap: 14px;
+      li { white-space: nowrap; }
+    }
+    @include lg {
+      display: flex;
+      gap: 14px;
+    }
+  }
+
+  &__cta {
+    gap: 16px;
+    @include md { align-items: flex-start; }
+    @include max-md { max-width: none; }
+    .cta__note { @include md { align-self: center; } }
+  }
+}
+
+// =====================================================================
+// BEFORE / AFTER (Figma 127:49)  +  ERGEBNISSE (179:720)
+// =====================================================================
+.ba {
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+    @include lg {
+      grid-template-columns: minmax(0, 663px) minmax(0, 512px);
+      justify-content: space-between;
+      gap: 40px;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    min-width: 0;
+    @include lg { gap: 40px; }
+  }
+
+  &__controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__panes {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    margin-inline: auto;
+    @include lg { margin-inline: 0; }
+  }
+
+  &__pane {
+    &[hidden] { display: none; }
+  }
+
+  &__video {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+
+  &__video-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 516 / 289;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--ink);
+    > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+// Compare slider
+.compare {
+  --pos: 50%;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 320 / 338;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--ink);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  @include lg { aspect-ratio: 512 / 536; }
+
+  &__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+  }
+
+  &__img--before {
+    filter: grayscale(1) contrast(1.05);
+  }
+
+  &__img--after {
+    clip-path: inset(0 0 0 var(--pos));
+  }
+
+  &__divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--pos);
+    width: 3.2px;
+    margin-left: -1.6px;
+    background: var(--white);
+    pointer-events: none;
+  }
+
+  &__handle {
+    position: absolute;
+    top: 50%;
+    left: var(--pos);
+    width: 42px;
+    height: 42px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+    img { width: 100%; height: 100%; }
+  }
+
+  &__range {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+    -webkit-appearance: none;
+    appearance: none;
+    &:focus-visible + .compare__handle {
+      outline: 3px solid var(--coral);
+      outline-offset: 4px;
+      border-radius: 50%;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    top: 14px;
+    padding: 4px 14px;
+    border-radius: 79px;
+    background: rgba(247, 243, 240, 0.92);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ink);
+    pointer-events: none;
+    &--before { left: 12px; }
+    &--after { right: 12px; }
+  }
+}
+
+// =====================================================================
+// 3D SIMULATION (Figma 127:79)
+// =====================================================================
+.sim {
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+    @include lg {
+      grid-template-columns: minmax(0, 600px) minmax(0, 520px);
+      gap: 80px;
+    }
+  }
+
+  &__media {
+    aspect-ratio: 600 / 500;
+    @include max-md { aspect-ratio: 320 / 300; }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    @include md { gap: 32px; }
+  }
+}
+
+// =====================================================================
+// LEISTUNGEN & PREIS (Figma 127:114)
+// =====================================================================
+.price {
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-align: left;
+    @include md { text-align: center; align-items: center; gap: 32px; }
+    .h2 { max-width: 1020px; }
+    .lead { max-width: 796px; }
+  }
+
+  &__cards {
+    display: grid;
+    gap: 24px;
+    margin-top: 40px;
+    @include md { margin-top: 56px; }
+    @include lg { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  &__bundle {
+    display: grid;
+    gap: 0;
+    @include lg {
+      display: contents;
+    }
+  }
+
+  &__card {
+    border-radius: var(--radius-md);
+    padding: 40px 32px;
+    @include max-md { padding: 32px 24px; }
+  }
+
+  // Image card with price
+  &__card--img {
+    position: relative;
+    min-height: 310px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: 0;
+    isolation: isolate;
+    @include lg { min-height: 540px; }
+
+    @include max-lg {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    img {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 27% 50%;
+      @include md { object-position: 50% 50%; }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(29, 41, 53, 0) 30%, rgba(29, 41, 53, 0.35) 100%);
+    }
+  }
+
+  &__num {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-weight: 300;
+    font-size: 54px;
+    line-height: 1.12;
+    color: var(--cream);
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+
+  }
+
+  &__line {
+    display: block;
+    width: 69px;
+    height: 4px;
+    background: url("../assets/svg/price-underline.svg") center / contain no-repeat;
+    transform-origin: left center;
+  }
+
+  // Included list card
+  &__card--list {
+    background: var(--cream);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @include max-lg {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .bullets { gap: 24px; }
+  }
+
+  &__label {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  // Financing card
+  &__card--outline {
+    border: 2px solid var(--coral);
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @include max-lg { order: 3; }
+    p { font-size: 18px; max-width: 320px; }
+    .h3 { max-width: 320px; }
+  }
+
+  &__cta {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    @include md { margin-top: 56px; }
+    @include lg { grid-column: 1 / -1; margin-top: 32px; }
+    @include max-lg { order: 2; }
+  }
+
+  @include max-lg {
+    &__cards {
+      display: flex;
+      flex-direction: column;
+    }
+    &__cta { margin-top: 0; }
+  }
+}
+
+// =====================================================================
+// PIEZO METHODE (Figma 127:152)
+// =====================================================================
+.piezo {
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+    @include lg {
+      grid-template-columns: minmax(0, 580px) minmax(0, 520px);
+      gap: 100px;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    @include md { gap: 32px; }
+  }
+
+  // hand-drawn underline under the accent word
+  .accent {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    .stroke {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0.02em;
+      height: 0.12em;
+      border-radius: 2px;
+      background: var(--coral);
+      opacity: 0.35;
+      transform: scaleX(0);
+      transform-origin: left center;
+      z-index: -1;
+    }
+  }
+}
+
+// =====================================================================
+// OPTISCH & FUNKTIONAL (Figma 127:170)
+// =====================================================================
+.fit {
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    @include md { align-items: center; text-align: center; gap: 32px; }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    max-width: 1100px;
+  }
+}
+
+// =====================================================================
+// DEUTSCHSPRACHIGES TEAM (Figma 127:176)
+// =====================================================================
+.team {
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+    @include lg {
+      grid-template-columns: minmax(0, 500px) minmax(0, 652px);
+      gap: 48px;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    @include md { gap: 32px; }
+  }
+
+  &__steps {
+    display: grid;
+    gap: 12px;
+    @include md { grid-template-columns: 1fr 1fr; }
+  }
+
+  &__step {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 123px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--white);
+    font-size: 17px;
+    line-height: 1.5;
+    @include md { font-size: 18px; }
+    span { white-space: nowrap; }
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.9s var(--ease-out);
+    }
+
+    @include md {
+      &:nth-child(1) img { width: 166.19%; left: -23.72%; }
+      &:nth-child(2) img { width: 165.25%; left: -40.75%; }
+      &:nth-child(3) img { width: 165.25%; left: -24.74%; }
+      &:nth-child(4) img { width: 164.97%; left: -42.04%; }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+
+    // Photo on the left, label on the right (Figma cards 1 & 3)
+    &--right {
+      justify-content: flex-end;
+      text-align: right;
+      padding: 24px 16px 24px 60px;
+      &::after {
+        background: linear-gradient(90deg, rgba(29, 41, 53, 0) 25%, rgba(29, 41, 53, 0.6) 100%);
+      }
+    }
+
+    // Label on the left, photo on the right (Figma cards 2 & 4)
+    &--left {
+      justify-content: flex-start;
+      text-align: left;
+      padding: 24px 60px 24px 13px;
+      &::after {
+        background: linear-gradient(270deg, rgba(29, 41, 53, 0) 25%, rgba(29, 41, 53, 0.6) 100%);
+      }
+    }
+
+    @include hover {
+      img { transform: scale(1.06); }
+    }
+  }
+}
+
+// =====================================================================
+// HEILUNG & NACHSORGE (Figma 127:198)
+// =====================================================================
+.healing {
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+    @include lg {
+      grid-template-columns: minmax(0, 540px) minmax(0, 606px);
+      gap: 54px;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    @include md { gap: 32px; }
+  }
+
+  &__timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    @include md { gap: 14px; }
+  }
+
+  &__phase {
+    position: relative;
+    aspect-ratio: 193 / 310;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--grey-light);
+
+    img {
+      position: absolute;
+      max-width: none;
+      object-fit: cover;
+    }
+    &:nth-child(1) img { width: 110%;    height: 136.91%; left: -0.48%; top: -15.71%; }
+    &:nth-child(2) img { width: 105.9%;  height: 131.8%;  left: -3.22%; top: -13.33%; }
+    &:nth-child(3) img { width: 106.19%; height: 132.16%; left: -6.19%; top: -11.41%; }
+
+    figcaption {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: rgba(247, 243, 240, 0.9);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink);
+      text-align: center;
+      @include md { font-size: 14px; }
+    }
+  }
+}
+
+// =====================================================================
+// PATIENTENSTIMMEN – Peek carousel (Figma 150:53)
+// =====================================================================
+.voices {
+  background: linear-gradient(180deg, rgba(215, 231, 226, 0) 50%, var(--mint) 100%);
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @include md { text-align: center; align-items: center; gap: 24px; }
+  }
+
+  &__stage {
+    position: relative;
+    height: 533px;
+    margin-top: 40px;
+    @include md { margin-top: 56px; height: 600px; }
+    @include lg { height: 667px; }
+  }
+
+  &__card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    max-width: calc(100vw - 2 * var(--gutter));
+    aspect-ratio: 400 / 667;
+    max-height: 100%;
+    translate: -50% -50%;
+    border-radius: 12.5px;
+    overflow: hidden;
+    background: var(--ink);
+    box-shadow: var(--shadow-card);
+    will-change: transform, opacity;
+    @include md { width: 360px; }
+    @include lg { width: 400px; }
+
+    > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    &:nth-child(3) > img { object-position: 0% 71%; }
+
+    &[aria-hidden="true"] {
+      pointer-events: none;
+    }
+  }
+
+  &__caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: 24px;
+    text-align: center;
+    strong { font-weight: 600; font-size: 18px; }
+    span { font-size: 15px; opacity: 0.6; }
+  }
+
+  &__nav { margin-top: 26px; }
+
+  &__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+}
+
+// =====================================================================
+// SOCIAL PROOF – Vorher/Nachher Galerie (Figma 127:227)
+// =====================================================================
+.proof {
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+    @include lg {
+      grid-template-columns: minmax(0, 500px) minmax(0, 652px);
+      gap: 48px;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    @include md { gap: 32px; }
+  }
+
+  &__gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+
+  &__viewport {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+  }
+
+  &__track {
+    display: flex;
+    will-change: transform;
+  }
+
+  &__slide {
+    flex: 0 0 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    @include md { gap: 16px; }
+  }
+
+  &__shot {
+    position: relative;
+    aspect-ratio: 318 / 333;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--grey-light);
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+    }
+  }
+
+  &__tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 16px;
+    border-radius: 79px;
+    background: var(--cream);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ink);
+    @include max-md { font-size: 14px; padding: 3px 12px; }
+  }
+}
+
+// =====================================================================
+// FAQ & FOOTER (Figma 127:241)
+// =====================================================================
+.faq {
+  padding-bottom: 48px;
+
+  &__title {
+    text-align: left;
+    @include md { text-align: center; }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 840px;
+    margin: 32px auto 0;
+    @include md { margin-top: 48px; }
+  }
+
+  &__item {
+    background: var(--mint);
+    border-radius: 30px 30px 0 30px;
+    overflow: hidden;
+    @include max-md { border-radius: 24px 24px 0 24px; }
+  }
+
+  &__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    padding: 24px 32px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+    @include md { font-size: 20px; }
+    @include max-md { padding: 20px 22px; }
+
+    &:focus-visible { outline-offset: -4px; }
+  }
+
+  &__icon {
+    flex: 0 0 auto;
+    width: 17px;
+    height: 10px;
+    transition: transform 0.45s var(--ease-out);
+    [aria-expanded="true"] & { transform: rotate(180deg); }
+  }
+
+  &__a {
+    overflow: hidden;
+    height: 0;
+    &[data-open="true"] { height: auto; }
+  }
+
+  &__a-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 0 32px 24px;
+    font-size: 18px;
+    line-height: 1.5;
+    @include max-md { padding: 0 22px 22px; font-size: 16px; }
+    p { max-width: 700px; }
+  }
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(28, 41, 54, 0.15);
+  @include md {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo { width: 160px; }
+
+  &__links {
+    display: flex;
+    gap: 24px;
+    font-weight: 300;
+    font-size: 13px;
+    a {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -2px;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform var(--dur) var(--ease-out);
+      }
+      @include hover { &::after { transform: scaleX(1); } }
+    }
+  }
+}
