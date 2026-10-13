@@ -564,14 +564,23 @@
 // DEUTSCHSPRACHIGES TEAM (Figma 127:176)
 // =====================================================================
 .team {
+  // Mobile (10:318) / tablet (173:170): title, copy, step cards, CTA last
+  // Desktop (127:176): text + CTA left, 2x2 cards right
   &__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 40px;
+    gap: 24px;
     align-items: center;
+    justify-items: start;
+    @include md { gap: 40px; justify-items: center; }
     @include lg {
       grid-template-columns: minmax(0, 500px) minmax(0, 652px);
-      gap: 48px;
+      grid-template-areas:
+        "text steps"
+        "cta steps";
+      column-gap: 48px;
+      row-gap: 32px;
+      justify-items: start;
     }
   }
 
@@ -579,27 +588,39 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    @include md { gap: 32px; }
+    min-width: 0;
+    width: 100%;
+    @include md { gap: 32px; max-width: 640px; }
+    @include lg { grid-area: text; align-self: end; max-width: none; }
+  }
+
+  &__cta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    @include lg { grid-area: cta; align-self: start; justify-content: flex-start; }
   }
 
   &__steps {
     display: grid;
     gap: 12px;
-    @include md { grid-template-columns: 1fr 1fr; }
+    width: 100%;
+    max-width: 320px;
+    @include md { grid-template-columns: 1fr 1fr; max-width: 652px; }
+    @include lg { grid-area: steps; align-self: center; }
   }
 
   &__step {
     position: relative;
     display: flex;
     align-items: center;
-    min-height: 123px;
+    height: 123px;
     border-radius: var(--radius-sm);
     overflow: hidden;
     isolation: isolate;
     color: var(--white);
-    font-size: 17px;
+    font-size: 18px;
     line-height: 1.5;
-    @include md { font-size: 18px; }
     span { white-space: nowrap; }
 
     img {
@@ -633,7 +654,7 @@
     &--right {
       justify-content: flex-end;
       text-align: right;
-      padding: 24px 16px 24px 60px;
+      padding: 24px 11px 24px 60px;
       &::after {
         background: linear-gradient(90deg, rgba(29, 41, 53, 0) 25%, rgba(29, 41, 53, 0.6) 100%);
       }
@@ -1018,7 +1039,6 @@
 @media (min-width: 768px) and (max-width: 1199px) {
   .sim__text,
   .piezo__text,
-  .team__text,
   .healing__text,
   .proof__text {
     .cta { align-self: center; }

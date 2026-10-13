@@ -86,7 +86,8 @@ figure {
   margin: 0;
 }
 
-ul {
+ul,
+ol {
   padding: 0;
   list-style: none;
 }
@@ -1277,50 +1278,86 @@ html.js.motion-ok .words .w__i {
 .team__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 40px;
+  gap: 24px;
   align-items: center;
+  justify-items: start;
+}
+@media (min-width: 768px) {
+  .team__grid {
+    gap: 40px;
+    justify-items: center;
+  }
 }
 @media (min-width: 1200px) {
   .team__grid {
     grid-template-columns: minmax(0, 500px) minmax(0, 652px);
-    gap: 48px;
+    grid-template-areas: "text steps" "cta steps";
+    column-gap: 48px;
+    row-gap: 32px;
+    justify-items: start;
   }
 }
 .team__text {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-width: 0;
+  width: 100%;
 }
 @media (min-width: 768px) {
   .team__text {
     gap: 32px;
+    max-width: 640px;
+  }
+}
+@media (min-width: 1200px) {
+  .team__text {
+    grid-area: text;
+    align-self: end;
+    max-width: none;
+  }
+}
+.team__cta {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+@media (min-width: 1200px) {
+  .team__cta {
+    grid-area: cta;
+    align-self: start;
+    justify-content: flex-start;
   }
 }
 .team__steps {
   display: grid;
   gap: 12px;
+  width: 100%;
+  max-width: 320px;
 }
 @media (min-width: 768px) {
   .team__steps {
     grid-template-columns: 1fr 1fr;
+    max-width: 652px;
+  }
+}
+@media (min-width: 1200px) {
+  .team__steps {
+    grid-area: steps;
+    align-self: center;
   }
 }
 .team__step {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 123px;
+  height: 123px;
   border-radius: var(--radius-sm);
   overflow: hidden;
   isolation: isolate;
   color: var(--white);
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.5;
-}
-@media (min-width: 768px) {
-  .team__step {
-    font-size: 18px;
-  }
 }
 .team__step span {
   white-space: nowrap;
@@ -1364,7 +1401,7 @@ html.js.motion-ok .words .w__i {
 .team__step--right {
   justify-content: flex-end;
   text-align: right;
-  padding: 24px 16px 24px 60px;
+  padding: 24px 11px 24px 60px;
 }
 .team__step--right::after {
   background: linear-gradient(90deg, rgba(29, 41, 53, 0) 25%, rgba(29, 41, 53, 0.6) 100%);
@@ -1850,7 +1887,6 @@ html.js.motion-ok .words .w__i {
 @media (min-width: 768px) and (max-width: 1199px) {
   .sim__text .cta,
   .piezo__text .cta,
-  .team__text .cta,
   .healing__text .cta,
   .proof__text .cta {
     align-self: center;
