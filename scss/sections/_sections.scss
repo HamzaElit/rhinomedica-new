@@ -185,7 +185,6 @@
   &__panes {
     position: relative;
     width: 100%;
-    max-width: 520px;
     @include md { max-width: 640px; }
     @include lg {
       grid-area: panes;
@@ -605,7 +604,6 @@
     display: grid;
     gap: 12px;
     width: 100%;
-    max-width: 320px;
     @include md { grid-template-columns: 1fr 1fr; max-width: 652px; }
     @include lg { grid-area: steps; align-self: center; }
   }
@@ -722,7 +720,6 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 7.4px;
     width: 100%;
-    max-width: 320px;
     @include md { gap: 14px; max-width: 606px; }
     @include lg { grid-area: photos; align-self: center; }
   }
@@ -778,9 +775,9 @@
   &__stage {
     position: relative;
     touch-action: pan-y;
-    height: 533px;
+    aspect-ratio: 400 / 667; // stage = one card on phones, whatever the width
     margin-top: 40px;
-    @include md { margin-top: 56px; height: 600px; }
+    @include md { margin-top: 56px; height: 600px; aspect-ratio: auto; }
     @include lg { height: 667px; }
   }
 
@@ -788,8 +785,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 320px;
-    max-width: calc(100vw - 2 * var(--gutter));
+    width: 100%;
     aspect-ratio: 400 / 667;
     max-height: 100%;
     translate: -50% -50%;

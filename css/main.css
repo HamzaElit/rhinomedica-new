@@ -849,7 +849,6 @@ html.js.motion-ok .words .w__i {
 .ba__panes {
   position: relative;
   width: 100%;
-  max-width: 520px;
 }
 @media (min-width: 768px) {
   .ba__panes {
@@ -1336,7 +1335,6 @@ html.js.motion-ok .words .w__i {
   display: grid;
   gap: 12px;
   width: 100%;
-  max-width: 320px;
 }
 @media (min-width: 768px) {
   .team__steps {
@@ -1482,7 +1480,6 @@ html.js.motion-ok .words .w__i {
   grid-template-columns: repeat(3, 1fr);
   gap: 7.4px;
   width: 100%;
-  max-width: 320px;
 }
 @media (min-width: 768px) {
   .healing__timeline {
@@ -1571,13 +1568,14 @@ html.js.motion-ok .words .w__i {
 .voices__stage {
   position: relative;
   touch-action: pan-y;
-  height: 533px;
+  aspect-ratio: 400/667;
   margin-top: 40px;
 }
 @media (min-width: 768px) {
   .voices__stage {
     margin-top: 56px;
     height: 600px;
+    aspect-ratio: auto;
   }
 }
 @media (min-width: 1200px) {
@@ -1589,8 +1587,7 @@ html.js.motion-ok .words .w__i {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 320px;
-  max-width: calc(100vw - 2 * var(--gutter));
+  width: 100%;
   aspect-ratio: 400/667;
   max-height: 100%;
   translate: -50% -50%;
