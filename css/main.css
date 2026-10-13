@@ -1571,11 +1571,15 @@ html.js.motion-ok .words .w__i {
   aspect-ratio: 400/667;
   margin-top: 40px;
 }
+@media (min-width: 500px) {
+  .voices__stage {
+    height: 600px;
+    aspect-ratio: auto;
+  }
+}
 @media (min-width: 768px) {
   .voices__stage {
     margin-top: 56px;
-    height: 600px;
-    aspect-ratio: auto;
   }
 }
 @media (min-width: 1200px) {
@@ -1597,7 +1601,7 @@ html.js.motion-ok .words .w__i {
   box-shadow: var(--shadow-card);
   will-change: transform, opacity;
 }
-@media (min-width: 768px) {
+@media (min-width: 500px) {
   .voices__card {
     width: 360px;
   }
@@ -1643,7 +1647,7 @@ html.js.motion-ok .words .w__i {
   justify-content: center;
   margin-top: 40px;
 }
-@media (max-width: 767px) {
+@media (max-width: 499px) {
   .voices__stage {
     margin-top: 24px;
   }
@@ -1728,7 +1732,7 @@ html.js.motion-ok .words .w__i {
   touch-action: pan-y;
   cursor: grab;
 }
-@media (min-width: 768px) {
+@media (min-width: 500px) {
   .proof__viewport {
     border-radius: var(--radius-sm);
   }
@@ -1743,7 +1747,7 @@ html.js.motion-ok .words .w__i {
   grid-template-columns: 1fr;
   gap: 16px;
 }
-@media (min-width: 768px) {
+@media (min-width: 500px) {
   .proof__slide {
     grid-template-columns: 1fr 1fr;
     gap: 16px;
@@ -1756,7 +1760,7 @@ html.js.motion-ok .words .w__i {
   overflow: hidden;
   background: var(--grey-light);
 }
-@media (min-width: 768px) {
+@media (min-width: 500px) {
   .proof__shot {
     aspect-ratio: 318/333;
     border-radius: var(--radius-sm);
@@ -1779,7 +1783,7 @@ html.js.motion-ok .words .w__i {
   font-size: 18px;
   color: var(--ink);
 }
-@media (min-width: 768px) {
+@media (min-width: 500px) {
   .proof__tag {
     top: 10px;
     left: 10px;
@@ -1787,7 +1791,7 @@ html.js.motion-ok .words .w__i {
     font-size: 16px;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 499px) {
   .proof .cnav__btn {
     display: none;
   }

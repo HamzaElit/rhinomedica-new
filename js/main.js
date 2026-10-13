@@ -379,7 +379,7 @@ function initPeekCarousel() {
   function layout(animated = true) {
     const stageW = stage.clientWidth;
     const cardW = cards[0].offsetWidth;
-    const single = window.innerWidth < 768; // mobile: one slide at a time, no peeking
+    const single = window.innerWidth < 500; // phones: one slide at a time, no peeking
     const offset = single ? cardW + 24 : cardW * 0.96;
 
     cards.forEach((card, i) => {

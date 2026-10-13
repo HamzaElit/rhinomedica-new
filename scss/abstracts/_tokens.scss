@@ -1,7 +1,10 @@
 // Design tokens — values taken from the Figma file "Rhinomedica DE – LP".
+$bp-sm: 500px;
 $bp-md: 768px;
 $bp-lg: 1200px;
 
+@mixin sm { @media (min-width: $bp-sm) { @content; } }
+@mixin max-sm { @media (max-width: ($bp-sm - 1px)) { @content; } }
 @mixin md { @media (min-width: $bp-md) { @content; } }
 @mixin lg { @media (min-width: $bp-lg) { @content; } }
 @mixin max-md { @media (max-width: ($bp-md - 1px)) { @content; } }
