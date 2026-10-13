@@ -435,8 +435,8 @@ html.js.motion-ok .words .w__i {
     overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x proximity;
-    margin-inline: calc(var(--gutter) * -1);
-    padding-inline: var(--gutter);
+    margin-inline: 0 calc(var(--gutter) * -1);
+    padding-inline: 0 var(--gutter);
     padding-block: 2px;
     scrollbar-width: none;
     cursor: grab;
