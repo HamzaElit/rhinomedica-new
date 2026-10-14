@@ -1030,7 +1030,7 @@ html.js.motion-ok .words .w__i {
     width: 100vw;
     margin-inline: calc(var(--gutter) * -1);
     aspect-ratio: 390/336;
-    border-radius: 10px;
+    border-radius: 0;
   }
 }
 .sim__text {
