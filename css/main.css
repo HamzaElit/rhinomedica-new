@@ -266,6 +266,43 @@ html.js.motion-ok .words .w__i {
   will-change: transform;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 767px) {
+  .ba {
+    order: 1;
+  }
+  .price {
+    order: 2;
+  }
+  .sim {
+    order: 3;
+  }
+  .piezo {
+    order: 4;
+  }
+  .fit {
+    order: 5;
+  }
+  .team {
+    order: 6;
+  }
+  .healing {
+    order: 7;
+  }
+  .voices {
+    order: 8;
+  }
+  .proof {
+    order: 9;
+  }
+  .faq {
+    order: 10;
+  }
+}
 .btn {
   display: inline-flex;
   align-items: center;

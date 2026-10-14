@@ -199,3 +199,23 @@ html.js.motion-ok {
   display: inline-block;
   will-change: transform;
 }
+
+// ---------- Section order ----------
+// The Figma mobile frame (1:3) puts "Leistungen & Preis" before the 3D simulation;
+// tablet and desktop keep the simulation first.
+main {
+  display: flex;
+  flex-direction: column;
+}
+@include max-md {
+  .ba      { order: 1; }
+  .price   { order: 2; }
+  .sim     { order: 3; }
+  .piezo   { order: 4; }
+  .fit     { order: 5; }
+  .team    { order: 6; }
+  .healing { order: 7; }
+  .voices  { order: 8; }
+  .proof   { order: 9; }
+  .faq     { order: 10; }
+}
