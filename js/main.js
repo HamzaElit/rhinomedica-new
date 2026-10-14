@@ -142,10 +142,6 @@ function initReveals() {
     if (line) animate(line, { scaleX: [0, 1] }, { duration: 0.8, delay: 1.2, ease: EASE });
   });
 
-  // Hand-drawn underline under "geformt"
-  inView(".piezo .stroke", (el) => {
-    animate(el, { scaleX: [0, 1] }, { duration: 0.9, delay: 0.7, ease: EASE });
-  });
 }
 
 /* ------------------------------------------------------------------ */

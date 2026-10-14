@@ -1296,24 +1296,6 @@ main {
     gap: 32px;
   }
 }
-.piezo .accent {
-  position: relative;
-  display: inline-block;
-  white-space: nowrap;
-}
-.piezo .accent .stroke {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0.02em;
-  height: 0.12em;
-  border-radius: 2px;
-  background: var(--coral);
-  opacity: 0.35;
-  transform: scaleX(0);
-  transform-origin: left center;
-  z-index: -1;
-}
 
 .fit__inner {
   display: flex;
