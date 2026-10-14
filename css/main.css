@@ -1020,23 +1020,6 @@ main {
   outline-offset: 4px;
   border-radius: 50%;
 }
-.compare__label {
-  position: absolute;
-  top: 14px;
-  padding: 4px 14px;
-  border-radius: 79px;
-  background: rgba(247, 243, 240, 0.92);
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--ink);
-  pointer-events: none;
-}
-.compare__label--before {
-  left: 12px;
-}
-.compare__label--after {
-  right: 12px;
-}
 
 .sim__grid {
   display: grid;

@@ -307,19 +307,6 @@
     }
   }
 
-  &__label {
-    position: absolute;
-    top: 14px;
-    padding: 4px 14px;
-    border-radius: 79px;
-    background: rgba(247, 243, 240, 0.92);
-    font-weight: 500;
-    font-size: 14px;
-    color: var(--ink);
-    pointer-events: none;
-    &--before { left: 12px; }
-    &--after { right: 12px; }
-  }
 }
 
 // =====================================================================
