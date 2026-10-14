@@ -329,11 +329,15 @@
 // 3D SIMULATION (Figma 127:79)
 // =====================================================================
 .sim {
+  // Mobile (96:124): title, full-bleed photo, copy, CTA — 24px apart
+  // Tablet (173:100): photo above the text block
+  // Desktop (127:79): photo left, text right
   &__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 40px;
+    gap: 24px;
     align-items: center;
+    @include md { gap: 40px; }
     @include lg {
       grid-template-columns: minmax(0, 600px) minmax(0, 520px);
       gap: 80px;
@@ -342,8 +346,13 @@
 
   &__media {
     aspect-ratio: 600 / 500;
-    // phones: the photo's own ratio, so both profiles stay fully visible
-    @include max-md { aspect-ratio: 1264 / 949; }
+    @include max-md {
+      order: 2;
+      width: 100vw;
+      margin-inline: calc(var(--gutter) * -1);
+      aspect-ratio: 390 / 336;
+      border-radius: 10px;
+    }
   }
 
   &__text {
@@ -351,6 +360,13 @@
     flex-direction: column;
     gap: 24px;
     @include md { gap: 32px; }
+    // phones: the text block dissolves so the headline can sit above the photo
+    @include max-md {
+      display: contents;
+      .h2 { order: 1; }
+      .lead { order: 3; }
+      .cta { order: 4; }
+    }
   }
 }
 

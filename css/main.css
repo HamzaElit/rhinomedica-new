@@ -1007,8 +1007,13 @@ html.js.motion-ok .words .w__i {
 .sim__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 40px;
+  gap: 24px;
   align-items: center;
+}
+@media (min-width: 768px) {
+  .sim__grid {
+    gap: 40px;
+  }
 }
 @media (min-width: 1200px) {
   .sim__grid {
@@ -1021,7 +1026,11 @@ html.js.motion-ok .words .w__i {
 }
 @media (max-width: 767px) {
   .sim__media {
-    aspect-ratio: 1264/949;
+    order: 2;
+    width: 100vw;
+    margin-inline: calc(var(--gutter) * -1);
+    aspect-ratio: 390/336;
+    border-radius: 10px;
   }
 }
 .sim__text {
@@ -1032,6 +1041,20 @@ html.js.motion-ok .words .w__i {
 @media (min-width: 768px) {
   .sim__text {
     gap: 32px;
+  }
+}
+@media (max-width: 767px) {
+  .sim__text {
+    display: contents;
+  }
+  .sim__text .h2 {
+    order: 1;
+  }
+  .sim__text .lead {
+    order: 3;
+  }
+  .sim__text .cta {
+    order: 4;
   }
 }
 
