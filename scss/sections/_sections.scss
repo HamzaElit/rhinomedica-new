@@ -754,21 +754,6 @@
     &:nth-child(2) img { width: 105.9%;  height: 131.8%;  left: -3.22%; top: -13.33%; }
     &:nth-child(3) img { width: 106.19%; height: 132.16%; left: -6.19%; top: -11.41%; }
 
-    figcaption {
-      position: absolute;
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
-      @include max-md { display: none; } // Figma mobile shows the photos only
-      padding: 6px 10px;
-      border-radius: 8px;
-      background: rgba(247, 243, 240, 0.9);
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--ink);
-      text-align: center;
-      @include md { font-size: 14px; }
-    }
   }
 }
 
