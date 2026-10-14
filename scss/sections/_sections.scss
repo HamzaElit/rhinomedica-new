@@ -140,7 +140,7 @@
       justify-items: center;
     }
     @include lg {
-      grid-template-columns: minmax(0, 663px) minmax(0, 512px);
+      grid-template-columns: minmax(0, 653px) minmax(0, 505px);
       grid-template-areas:
         "text panes"
         "cta panes";
@@ -190,7 +190,7 @@
       grid-area: panes;
       align-self: center;
       justify-self: end;
-      max-width: 512px;
+      max-width: 505px;
     }
   }
 
